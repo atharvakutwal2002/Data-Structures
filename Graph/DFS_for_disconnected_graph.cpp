@@ -23,17 +23,27 @@ void bfsPrint(vector<vector<int> > v, int sv){
      }
 }
 
-void print(vector<vector<int> > v, int sv, vector<bool> &visited){
+void printDFS(vector<vector<int> > v, int sv, vector<bool> &visited){
     cout<<sv<<endl;
     visited[sv] = true;
     int n = v.size();
     for(int i=0;i<n;i++){
         if(v[sv][i] == 1 && visited[i]==false){
-            print(v,i, visited);
+            printDFS(v,i, visited);
         }
     }
 }
 
+void DFS(vector<vector<int> > matrix){
+    int n = matrix.size();
+    vector<bool> visited(n,false);
+    for(int i=0;i<n;i++){
+        if(!visited[i]){
+            printDFS(matrix,i,visited);
+        }
+    }
+
+}
 int main(){
    int n,e;
    cin>>n>>e;
@@ -46,15 +56,12 @@ int main(){
     matrix[fv][sv] = 1;
     matrix[sv][fv] = 1;
    }
-   vector<bool> visited(n,false);
+
 
    cout<<"DFS "<<endl;
-   print(matrix,0, visited);
+   DFS(matrix);
 
    cout<<"BFS"<<endl;
-   bfsPrint(matrix,0);
+   ///bfsPrint(matrix,0);
    return 0;
 }
-
-//bfs is iterative approach(similar to LOT)
-//dfs is recurrsive approach
