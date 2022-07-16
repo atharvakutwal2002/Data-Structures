@@ -11,6 +11,7 @@ public:
 
 // problem on leetcode for searching in binary search tree
 
+//final sol
 // recurrsive approach
 Treenode *search(Treenode *root, int val)
 {
@@ -32,6 +33,8 @@ Treenode *search(Treenode *root, int val)
     }
     return NULL;
 }
+
+
 
 // iterative appraoch
 Treenode *search2(Treenode *root, int val)
