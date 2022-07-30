@@ -13,6 +13,7 @@ public:
         this->data = data;
         this->next = NULL;
     }
+    //destructor
     ~Node()
     {
         int value = this->data;
