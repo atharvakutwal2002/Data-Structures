@@ -69,9 +69,27 @@ void Delete(int data, Node *&head)
         prev = prev->next;
         temp = temp->next;
     }
-    prev->next=temp->next;
-    temp->next->prev=prev;
+    prev->next = temp->next;
+    temp->next->prev = prev;
     delete temp;
+}
+
+void reverse(Node *head)
+{
+
+    Node *p = head;
+    Node *temp;
+    while (p)
+    {
+        temp = p->next;
+        p->next = p->prev;
+        p->prev = temp;
+        p = p->prev; //as we are reversing the conditions are reversed 
+        if (p->next == NULL)
+        {
+            head = p;
+        }
+    }
 }
 
 int main()
@@ -83,7 +101,7 @@ int main()
     insertAtHead(7, n1);
     // Print(n1);
     insertAtPosition(3, 90, n1);
-    Delete(90,n1);
+    Delete(90, n1);
     Print(n1);
     return 0;
 }
