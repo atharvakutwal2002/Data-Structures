@@ -84,8 +84,8 @@ void reverse(Node *head)
         temp = p->next;
         p->next = p->prev;
         p->prev = temp;
-        p = p->prev; //as we are reversing the conditions are reversed 
-        if (p->next == NULL)
+        p = p->prev; // as we are reversing the conditions are reversed
+        if (p != NULL && p->next == NULL)
         {
             head = p;
         }
