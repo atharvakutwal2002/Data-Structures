@@ -182,6 +182,51 @@ void insertAtBottom(stack<int> &st, int x)
     st.push(temp);
 }
 
+void reverseStack(stack<int> &s)
+{
+    if (s.empty())
+    {
+        return;
+    }
+    int temp = s.top();
+    s.pop();
+    reverseStack(s);
+    insertAtBottom(s, temp);
+}
+
+void sortedInsert(stack<int> &s, int num)
+{
+    if (s.empty() || (!s.empty() && s.top() < num))
+    {
+        s.push(num);
+        return;
+    }
+
+    int temp = s.top();
+    s.pop();
+    sortedInsert(s,num);
+    s.push(temp);
+}
+void sortStack(stack<int> &s)
+{
+
+    if (s.empty())
+    {
+        return;
+    }
+    int temp = s.top();
+    s.pop();
+    sortStack(s);
+    sortedInsert(s, temp);
+}
+
+/*
+2
+3
+4
+
+*/
+
 int main()
 {
     // stackNode *h = new stackNode(1);
@@ -202,7 +247,17 @@ int main()
     st.push(2);
     st.push(3);
     st.push(4);
-    insertAtBottom(st, 0);
+    // insertAtBottom(st, 0);
+    for (int i = 0; i < 5; i++)
+    {
+        cout << st.top() << " ";
+        st.pop();
+    }
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.push(4);
+    reverseStack(st);
     for (int i = 0; i < 5; i++)
     {
         cout << st.top() << " ";
