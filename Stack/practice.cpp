@@ -85,37 +85,62 @@ using namespace std;
 
 // stack using LL;
 
-class Node
+class stackNode
 {
 public:
     int data;
-    Node *next;
-    Node(int data)
+    stackNode *next;
+
+    stackNode(int data)
     {
+
         this->data = data;
         this->next = nullptr;
     }
 };
 
-class Stack
+void push(int data, stackNode *&head)
 {
-public:
-    int data;
-    int top;
-    Stack(int data, char c)
-    {
-        
-        this->data=data;
-        Node n(data);
-    }
-    void push(int data , Node * head ){
-        top++;
-        Node * temp=new Node(data);
-        temp->next=head;
-        head= temp;
-    }
-    void pop(Node * head){
-        top--;
 
+    stackNode *temp = new stackNode(data);
+    temp->next = head;
+    head = temp;
+}
+void pop(stackNode *&head)
+{
+    stackNode *temp = head->next;
+    stackNode *del_node = head;
+    head = temp;
+    del_node->next = nullptr;
+    delete del_node;
+}
+int top(stackNode *head)
+{
+    return head->data;
+}
+
+void display(stackNode *head)
+{
+    stackNode *temp = head;
+    while (temp)
+    {
+        cout << temp->data << " ";
+        temp = temp->next;
     }
-};
+    cout << endl;
+}
+
+int main()
+{
+    stackNode *h = new stackNode(1);
+    push(2, h);
+    push(3, h);
+    display(h);
+    pop(h);
+    display(h);
+    pop(h);
+    display(h);
+    cout << top(h);
+
+    return 0;
+}
