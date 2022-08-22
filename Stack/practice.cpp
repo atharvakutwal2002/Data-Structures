@@ -130,17 +130,84 @@ void display(stackNode *head)
     cout << endl;
 }
 
+bool isValidParenthesis(string s)
+{
+    stack<char> st;
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+        {
+            st.push(s[i]);
+        }
+        else if (s[i] == ')')
+        {
+            if (st.empty() || st.top() != '(')
+            {
+                return false;
+            }
+
+            st.pop();
+        }
+        else if (s[i] == ']')
+        {
+            if (st.empty() || st.top() != '[')
+            {
+                return false;
+            }
+            st.pop();
+        }
+
+        else if (s[i] == '}')
+        {
+            if (st.empty() || st.top() != '{')
+            {
+                return false;
+            }
+            st.pop();
+        }
+    }
+    return st.empty();
+}
+
+void insertAtBottom(stack<int> &st, int x)
+{
+    if (st.empty())
+    {
+        st.push(x);
+        return;
+    }
+    int temp = st.top();
+    st.pop();
+    insertAtBottom(st, x);
+    st.push(temp);
+}
+
 int main()
 {
-    stackNode *h = new stackNode(1);
-    push(2, h);
-    push(3, h);
-    display(h);
-    pop(h);
-    display(h);
-    pop(h);
-    display(h);
-    cout << top(h);
+    // stackNode *h = new stackNode(1);
+    // push(2, h);
+    // push(3, h);
+    // display(h);
+    // pop(h);
+    // display(h);
+    // pop(h);
+    // display(h);
+    // cout << top(h);
+
+    // string s = "{{})){}";
+    // cout << isValid(s);
+
+    stack<int> st;
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.push(4);
+    insertAtBottom(st, 0);
+    for (int i = 0; i < 5; i++)
+    {
+        cout << st.top() << " ";
+        st.pop();
+    }
 
     return 0;
 }
