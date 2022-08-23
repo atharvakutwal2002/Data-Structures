@@ -204,7 +204,7 @@ void sortedInsert(stack<int> &s, int num)
 
     int temp = s.top();
     s.pop();
-    sortedInsert(s,num);
+    sortedInsert(s, num);
     s.push(temp);
 }
 void sortStack(stack<int> &s)
@@ -220,12 +220,38 @@ void sortStack(stack<int> &s)
     sortedInsert(s, temp);
 }
 
-/*
-2
-3
-4
+bool redundantBrackets(string s)
+{
+    stack<char> st;
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (s[i] == '(' || s[i] == '*' || s[i] == '/' || s[i] == '+' || s[i] == '-')
+        {
+            st.push(s[i]);
+        }
+        else if (s[i] == ')')
+        {
+            bool isRedundant = true;
+            while (st.top()!='(')
+            {
 
-*/
+                if (st.top() == '*' || st.top() == '/' || st.top() == '+' || st.top() == '-')
+                {
+                    
+                    isRedundant = false;
+                }
+                st.pop();
+            }
+            if (isRedundant==true)
+            {
+                return true;
+            }
+            st.pop();
+            
+        }
+    }
+    return false;
+}
 
 int main()
 {
