@@ -33,5 +33,6 @@ vector<int> nextSmallerRight(vector<int> arr)
         }
         s.push(arr[i]);
     }
+    reverse(ans.begin(), ans.end());
     return ans;
 }
