@@ -56,7 +56,7 @@ bool isValid(string A)
         {
 
             if (s.empty())
-                return false; /// imp otherwise run time erro
+                return false; /// imp otherwise run time error
             else if (A[i] == ')')
             {
                 if (s.top() == '(')
